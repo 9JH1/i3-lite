@@ -1,0 +1,87 @@
+[general]
+import = ['~/.config/i3/conf/alacritty-extra.toml']
+
+[window]
+decorations="full"
+dynamic_title=true
+
+[font]
+size = 10
+
+[font.normal]
+family='Mononoki Nerd Font'
+
+[font.bold]
+family='MonaspiceRN NFM'
+style="bold"
+
+[font.italic]
+family='Mononoki Nerd Font'
+style='italic'
+
+[terminal]
+
+[terminal.shell]
+program = "/bin/sh"
+args = ["-c", "export ZDOTDIR=/home/_3hy/.config/i3/conf/ && zsh"]
+[colors.primary]
+background = "#02100F"
+foreground = "#bfc3c3"
+
+[colors.cursor]
+text = "#02100F"
+cursor = "#bfc3c3"
+
+[colors.vi_mode_cursor]
+text = "#02100F"
+cursor = "#bfc3c3"
+
+[colors.search.matches]
+foreground = "#02100F"
+background = "#bfc3c3"
+
+[colors.search.focused_match]
+foreground = "CellBackground"
+background = "CellForeground"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.footer_bar]
+foreground = "#556767"
+background = "#bfc3c3"
+
+[colors.selection]
+text = "CellBackground"
+background = "CellForeground"
+
+[colors.normal]
+black = "#02100F"
+red = "#44427A"
+green = "#038A73"
+yellow = "#1E5B9D"
+blue = "#A664E3"
+magenta = "#039490"
+cyan = "#20A099"
+white = "#bfc3c3"
+
+[colors.bright]
+black = "#556767"
+red = "#44427A"
+green = "#038A73"
+yellow = "#1E5B9D"
+blue = "#A664E3"
+magenta = "#039490"
+cyan = "#20A099"
+white = "#bfc3c3"
+
+[colors.dim]
+black = "#bfc3c3"
+red = "#44427A"
+green = "#039490"
+yellow = "#1E5B9D"
+blue = "#A664E3"
+magenta = "#038A73"
+cyan = "#20A099"
+white = "#556767"
