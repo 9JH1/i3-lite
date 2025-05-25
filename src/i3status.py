@@ -7,7 +7,7 @@ def print_line(message):
     sys.stdout.flush()
 
 def get_line():
-    return subprocess.check_output(['/home/_3hy/.config/i3/src/playerctl.sh']).decode().replace("\n","")
+    return subprocess.check_output([sys.argv[1]]).decode().replace("\n","")
 
 def read_line():
     try:

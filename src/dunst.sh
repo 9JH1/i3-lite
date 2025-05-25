@@ -20,7 +20,7 @@ mouse_right_click = close_current
 width = (100,400)
 progress_bar = false
 progress_bar_min_width = (100,400)
-offset = (30,30)
+offset = (15,15)
 origin = bottom-right
 [urgency_low]
 foreground = "${color3:-#ffffff}"
