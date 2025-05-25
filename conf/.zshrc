@@ -59,11 +59,6 @@ function n(){
 	nvim "$@"
 }
 
-function tim(){
-	~/.config/i3/conky/run.sh
-}
-
-
 function cds(){
 	localcd="$(cat ~/.pwd.tmp)"
 }
