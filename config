@@ -48,11 +48,11 @@ bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAUL
 bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
 bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86AudioPlay         exec --no-startup-id playerctl --player spotify play-pause
-bindsym XF86AudioNext         exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym XF86AudioPrev         exec --no-startup-id dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.XF86AudioPrev
-bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +1%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%-
+bindsym XF86AudioPlay         exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext         exec --no-startup-id playerctl next
+bindsym XF86AudioPrev         exec --no-startup-id playerctl previous 
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 exec_always --no-startup-id killall nm-applet; nm-applet
 exec_always --no-startup-id killall blueman-applet; blueman-applet
@@ -110,6 +110,7 @@ client.focused          $color4        $color4       $color4   $color4      $col
 bar {
     status_command exec ~/.config/i3/src/i3status.sh
 		bindsym button3 exec dunstctl set-paused toggle
+		bindsym button1 exec exec playerctl play-pause
 		i3bar_command i3bar --transparency
 		position top
 		separator_symbol "|"
