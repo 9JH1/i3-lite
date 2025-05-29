@@ -40,8 +40,8 @@ bindsym $mod+Return       exec --no-startup-id "/home/$USER/.config/i3/src/alacr
 bindsym $mod+x            exec --no-startup-id "/home/$USER/.config/i3/src/lock.sh"
 bindsym $mod+b            exec --no-startup-id "/home/$USER/.config/i3/src/alacritty_extra.sh -padding"
 bindsym $mod+m            exec --no-startup-id "/home/$USER/.config/i3/src/lock.sh --image"
-bindsym $mod+Ctrl+Shift+x exec --no-startup-id "shutdown now"
-bindsym $mod+z            exec --no-startup-id "boomer"
+bindsym $mod+Ctrl+x       exec --no-startup-id "shutdown now"
+bindsym $mod+t            exec --no-startup-id "/home/$USER/.config/i3/src/wal.sh"
 
 # -- SPECIAL KEYBINDS -- 
 bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
@@ -120,12 +120,12 @@ bar {
 		workspace_min_width 30
 		workspace_buttons yes
 		binding_mode_indicator no
-		padding 0px 20px 0px
+		padding 0px 0px 0px 20px
 		colors {
 			background $background
 			statusline $color1
 			separator $color5
-			focused_workspace $color5 $color5 $foreground
+			focused_workspace $color5 $color5 $background
 			inactive_workspace $background $background $color5
 		}
 }

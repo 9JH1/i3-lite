@@ -71,6 +71,7 @@ cpu_usage {
 EOM
 tmp2=$(mktemp --suffix=".conf")
 echo "$tmp" >> "$tmp2"
+killall i3status
 i3status -c "$tmp2" \
 	| python /home/$USER/.config/i3/src/i3status.py "/home/$USER/.config/i3/src/playerctl.sh" \
 	| python /home/$USER/.config/i3/src/i3status.py "/home/$USER/.config/i3/src/notify.sh"
