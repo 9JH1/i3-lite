@@ -1,5 +1,12 @@
-# -- BASE SETTINGS
+# -- VARS
 set $mod Mod4
+set $dpi 15px
+set $font_size 15px
+set $border 5px
+set $gap_inner 10px 
+set $gap_outer 5px
+
+# -- BASE SETTINGS 
 floating_modifier $mod
 default_orientation auto
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -7,7 +14,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 # -- FOR WINDOW --
 for_window [window_role="alert"] floating enable
 for_window [class="feh"] floating enable
-for_window [all] border pixel 3
+for_window [all] border pixel $border
 
 # -- BASE KEYBINDS --
 bindsym $mod+shift+f fullscreen toggle global
@@ -59,9 +66,9 @@ exec_always --no-startup-id killall blueman-applet; blueman-applet
 exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
 exec_always --no-startup-id ~/.config/i3/src/wal.sh
 
-gaps inner 10
-gaps outer 5
-font pango: Mononoki Nerd Font 9
+gaps inner $gap_inner 
+gaps outer $gap_outer
+font pango: Mononoki Nerd Font $font_size
 hide_edge_borders none
 
 # -- WORKSPACES -- 
@@ -116,11 +123,11 @@ bar {
 		separator_symbol "|"
 		strip_workspace_numbers no
 		strip_workspace_name no 
-		font pango:Mononoki Nerd Font Bold 10
+		font pango:Mononoki Nerd Font Bold $font_size
 		workspace_min_width 30
 		workspace_buttons yes
 		binding_mode_indicator no
-		padding 0px 0px 0px 20px
+		padding 0px 0px 0px $dpi
 		colors {
 			background $background
 			statusline $color1

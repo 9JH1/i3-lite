@@ -1,8 +1,9 @@
 #!/bin/bash 
 source "$HOME/.cache/wal/colors.sh"
+source "$HOME/.config/i3/config.sh"
 read -r -d '' DUNSTRC << EOM
 [global]
-font = MonaspiceRN NFM 11
+font = MonaspiceRN NFM $dpi
 markup = full
 format = "<b>%s</b>\n<b>%b</b>"
 icon_position = left
