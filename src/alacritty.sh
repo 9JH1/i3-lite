@@ -1,3 +1,4 @@
+source ~/.config/i3/src/i3.sh
 read -r -d '' ALACRITTY_CONFIG << EOM
 [general]
 import = ['~/.config/i3/conf/alacritty-extra.toml']
@@ -7,7 +8,7 @@ decorations="full"
 dynamic_title=true
 
 [font]
-size = 10
+size = $dpi_two_thirds 
 
 [font.normal]
 family='Mononoki Nerd Font'

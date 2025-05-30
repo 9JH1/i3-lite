@@ -6,7 +6,7 @@ decorations="full"
 dynamic_title=true
 
 [font]
-size = 10
+size = 10 
 
 [font.normal]
 family='Mononoki Nerd Font'
@@ -25,20 +25,20 @@ style='italic'
 program = "/bin/sh"
 args = ["-c", "export ZDOTDIR=/home/_3hy/.config/i3/conf/ && zsh"]
 [colors.primary]
-background = "#111313"
-foreground = "#c3c4c4"
+background = "#0D1011"
+foreground = "#c2c3c3"
 
 [colors.cursor]
-text = "#111313"
-cursor = "#c3c4c4"
+text = "#0D1011"
+cursor = "#c2c3c3"
 
 [colors.vi_mode_cursor]
-text = "#111313"
-cursor = "#c3c4c4"
+text = "#0D1011"
+cursor = "#c2c3c3"
 
 [colors.search.matches]
-foreground = "#111313"
-background = "#c3c4c4"
+foreground = "#0D1011"
+background = "#c2c3c3"
 
 [colors.search.focused_match]
 foreground = "CellBackground"
@@ -49,39 +49,39 @@ foreground = "None"
 background = "None"
 
 [colors.footer_bar]
-foreground = "#5a6e6e"
-background = "#c3c4c4"
+foreground = "#58656c"
+background = "#c2c3c3"
 
 [colors.selection]
 text = "CellBackground"
 background = "CellForeground"
 
 [colors.normal]
-black = "#111313"
-red = "#95662D"
-green = "#897565"
-yellow = "#7E8376"
-blue = "#A9822C"
-magenta = "#978877"
-cyan = "#B3A38C"
-white = "#c3c4c4"
+black = "#0D1011"
+red = "#3B5D67"
+green = "#566361"
+yellow = "#A02708"
+blue = "#B9622F"
+magenta = "#C59463"
+cyan = "#587B84"
+white = "#c2c3c3"
 
 [colors.bright]
-black = "#5a6e6e"
-red = "#95662D"
-green = "#897565"
-yellow = "#7E8376"
-blue = "#A9822C"
-magenta = "#978877"
-cyan = "#B3A38C"
-white = "#c3c4c4"
+black = "#58656c"
+red = "#3B5D67"
+green = "#566361"
+yellow = "#A02708"
+blue = "#B9622F"
+magenta = "#C59463"
+cyan = "#587B84"
+white = "#c2c3c3"
 
 [colors.dim]
-black = "#c3c4c4"
-red = "#95662D"
-green = "#978877"
-yellow = "#7E8376"
-blue = "#A9822C"
-magenta = "#897565"
-cyan = "#B3A38C"
-white = "#5a6e6e"
+black = "#c2c3c3"
+red = "#3B5D67"
+green = "#C59463"
+yellow = "#A02708"
+blue = "#B9622F"
+magenta = "#566361"
+cyan = "#587B84"
+white = "#58656c"

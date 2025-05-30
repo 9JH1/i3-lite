@@ -5,7 +5,7 @@
 MAX_RETRYS=10
 RETRY_INTERVAL=0
 INTERFACE=$(ip addr show | awk '/inet.*brd/{print $NF}')
-INTERFACE="wlo1"
+INTERFACE="wlan0"
 HOSTNAME=$(cat /etc/hostname)
 PUBLIC_IP=$(ip addr show | grep "brd"  | grep "inet " | awk '{print $4}')
 HOSTNAME_SIZE=10
