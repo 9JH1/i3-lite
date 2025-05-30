@@ -9,48 +9,20 @@
 	category: 
 	timeout: 10000
 	start: 0
-	timestamp: 100586117179
+	timestamp: 102893149772
 	urgency: NORMAL
 	transient: 0
 	formatted: '<b>Changed Wallpaper</b>
 <b></b>'
-	fg: #7a827bff
-	bg: #0b0d0aff
-	frame: #bc8f5bff
+	fg: #a02708ff
+	bg: #0d1011ff
+	frame: #b9622fff
 	highlight: #1745d1ff
 	fullscreen: show
 	format: <b>%s</b>\n<b>%b</b>
 	progress: -1
 	stack_tag: 
 	id: 2
-	actions: {}
-	script_count: 0
-}
-{
-	appname: 'Tauon Music Box'
-	summary: 'Sambuka'
-	body: 'Pierce The Veil | Misadventures'
-	icon: ''
-	raw_icon set: true
-	icon_id: 'ef2575410514aac98a70a88fab143162'
-	desktop_entry: 'tauonmb'
-	category: 
-	timeout: 10000
-	start: 0
-	timestamp: 100587790809
-	urgency: NORMAL
-	transient: 0
-	formatted: '<b>Sambuka</b>
-<b>Pierce The Veil | Misadventures</b>'
-	fg: #7a827bff
-	bg: #0b0d0aff
-	frame: #bc8f5bff
-	highlight: #1745d1ff
-	fullscreen: show
-	format: <b>%s</b>\n<b>%b</b>
-	progress: -1
-	stack_tag: 
-	id: 6
 	actions: {}
 	script_count: 0
 }

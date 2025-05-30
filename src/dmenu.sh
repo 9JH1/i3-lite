@@ -1,3 +1,4 @@
 #!/bin/bash
-source ~/.cache/wal/colors.sh 
-dmenu_run -fn "Mononoki Nerd Font" -nb "$background" -nf "$color1" -sb "$color5" -sf "$foreground" && off=1
+source ~/.cache/wal/colors.sh
+source ~/.config/i3/src/i3.sh
+dmenu_run -fn "Mononoki Nerd Font:size=$((dpi_number-2))" -nb "$background" -nf "$color1" -sb "$foreground" -sf "$background" && off=1
