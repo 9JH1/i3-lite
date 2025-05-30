@@ -4,7 +4,7 @@ source "$HOME/.cache/wal/colors.sh"
 echo $dpi_double
 read -r -d '' DUNSTRC << EOM
 [global]
-font = MonaspiceRN NFM $font_size
+font = MonaspiceRN NFM $dpi
 markup = full
 format = "<b>%s</b>\n<b>%b</b>"
 icon_position = left
