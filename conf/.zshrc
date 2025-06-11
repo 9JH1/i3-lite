@@ -1,6 +1,4 @@
-
-
-	#z4h settings 
+ 	#z4h settings 
 	zstyle ':z4h:' auto-update      'no'
 	zstyle ':z4h:' auto-update-days '28'
 	zstyle ':z4h:bindkey' keyboard  'pc'
@@ -10,7 +8,11 @@
 	zstyle ':z4h:fzf-complete' recurse-dirs 'no'
 	zstyle ':z4h:direnv'         enable 'no'
 	zstyle ':z4h:direnv:success' notify 'yes'
-	zstyle ':z4h:' start-tmux command tmux -u -f ~/.config/i3/conf/tmux.conf new-session -A
+	if [ "$ZSH_ISOLATE" -eq  "0" ]; then
+		zstyle ':z4h:' start-tmux command ""
+	else
+		zstyle ':z4h:' start-tmux command tmux -u -f ~/.config/i3/conf/tmux.conf new-session -A
+	fi
 	# Only show fastfetch if not already inside tmux, and not being launched by z4h for tmux
 
 	get_remaining_lines() {
@@ -22,7 +24,7 @@
 	echo -ne '\033[?25l'
 
 	# define settings for greeter loading
-	if [ -n "$TMUX" ] && [ "$(tmux display-message -p '#{pane_index}')" = "0" ] && [ "$(tmux display-message -p '#{window_index}')" = "0" ] && [ -z "$FASTFETCH_SHOWN" ]; then
+	if [ "$ZSH_ISOLATE" -eq "1" ] && [ -n "$TMUX" ] && [ "$(tmux display-message -p '#{pane_index}')" = "0" ] && [ "$(tmux display-message -p '#{window_index}')" = "0" ] && [ -z "$FASTFETCH_SHOWN" ]; then
 			export FASTFETCH_SHOWN=1
 			export ABSOLUTE_SWITCH=0
 			fastfetch=$(fastfetch --logo arch_old --config "$HOME/.config/i3/conf/fastfetch.jsonc")
@@ -76,5 +78,7 @@ function cdr() {
 
 # Define aliases.
 alias tree='tree -a -I .git'
-alias ls="${aliases[ls]:-ls} --color=auto -r -t"
-alias ccat="pygmentize"
+
+function ls {
+	lsd $@ --color=auto -r -t
+}

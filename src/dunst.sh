@@ -43,5 +43,5 @@ killall -q dunst
 dunst_config_file=$(mktemp)
 echo "$DUNSTRC" >  $dunst_config_file
 echo "starting dunst"
-dunst -config "$dunst_config_file" -print > ~/.config/i3/logs/dunst.log & 
+dunst -config "$dunst_config_file" & 
 notify-send "Changed Wallpaper"
