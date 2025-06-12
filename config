@@ -1,7 +1,8 @@
 # -- VARS
 set $mod Mod4
 set $dpi         15px
-set $double  30px 
+set $dpi_gap     10px
+set $double_dpi  30px 
 set $border_size 5px
 
 # -- BASE SETTINGS 
@@ -48,7 +49,7 @@ bindsym $mod+x            exec --no-startup-id "/home/$USER/.config/i3/src/lock.
 bindsym $mod+b            exec --no-startup-id "/home/$USER/.config/i3/src/alacritty_extra.sh"
 bindsym $mod+m            exec --no-startup-id "/home/$USER/.config/i3/src/lock.sh --image"
 bindsym $mod+Ctrl+x       exec --no-startup-id "shutdown now"
-bindsym $mod+t            exec --no-startup-id "/home/$USER/.config/i3/src/wal.sh > /home/$USER/.config/i3/logs/wal.log"
+bindsym $mod+Shift+t            exec --no-startup-id "/home/$USER/.config/i3/src/wal.sh"
 
 # -- SPECIAL KEYBINDS -- 
 bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
@@ -67,8 +68,8 @@ exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
 exec_always --no-startup-id ~/.config/i3/src/wal.sh
 #exec_always --no-startup-id killall plank; plank
 
-gaps inner $dpi
-gaps outer $dpi
+gaps inner $dpi_gap  
+gaps outer $dpi_gap
 font pango: Mononoki Nerd Font $dpi
 hide_edge_borders none
 
@@ -111,7 +112,7 @@ set_from_resource $color4         i3wm.color4
 set_from_resource $color5         i3wm.color5
 
 # -- CLIENT COLORS --    border         bg            fg        indicator    child_border
-client.focused_inactive $color4        $color4      $color4     $color4     $color4
+client.focused_inactive $background    $background  $background $background $background
 client.unfocused        $background    $background  $background $background $background
 client.urgent           #ff0000        #ff0000      #ff0000     #ff0000     #ff0000 
 client.focused          $color4        $color4       $color4   $color4      $color4  
@@ -125,7 +126,7 @@ bar {
 		strip_workspace_numbers no
 		strip_workspace_name no 
 		font pango:Mononoki Nerd Font Bold $dpi
-		workspace_min_width $double
+		workspace_min_width $double_dpi
 		workspace_buttons yes 
 		binding_mode_indicator no
 		padding 0px 0px 0px $dpi

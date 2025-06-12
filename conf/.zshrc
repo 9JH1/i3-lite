@@ -70,7 +70,9 @@ function cdd(){
 
 # move to last cd'd dir
 cds
-
+function linecount(){
+	ls -R | wc -l
+}
 function cdr() {
 	dirs=(*/)
 	[[ $dirs ]] && cd -- "${dirs[RANDOM%${#dirs[@]}]}"

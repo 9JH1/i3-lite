@@ -1,7 +1,6 @@
 #!/bin/bash
 source ~/.config/i3/src/i3.sh
 source "$HOME/.cache/wal/colors.sh"
-echo $dpi_double
 read -r -d '' DUNSTRC << EOM
 [global]
 font = MonaspiceRN NFM $dpi
@@ -22,7 +21,7 @@ mouse_right_click = close_current
 width = 400
 progress_bar = true
 progress_bar_min_width = 300
-offset = ($dpi_double,$dpi_double)
+offset = ($gap,$gap)
 origin = bottom-right
 [urgency_low]
 foreground = "${color3}"

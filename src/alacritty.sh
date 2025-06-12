@@ -14,7 +14,7 @@ decorations="full"
 dynamic_title=true
 
 [font]
-size = $dpi_two_thirds 
+size = $gap_number 
 
 [font.normal]
 family='Mononoki Nerd Font'
@@ -38,6 +38,11 @@ ALACRITTY_PATH="/home/$USER/.config/i3/conf/alacritty.toml"
 ALACRITTY_COLORS=$(cat /home/$USER/.cache/wal/colors-alacritty.toml)
 echo "$ALACRITTY_CONFIG" > "$ALACRITTY_PATH"
 echo "$ALACRITTY_COLORS" >> "$ALACRITTY_PATH"
+
+if [ "$1" -eq "no-run" ]; then
+	exit
+fi 
+
 if [ -v $1 ]; then 
 	alacritty --config-file "$ALACRITTY_PATH"
 else 
