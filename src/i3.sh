@@ -1,9 +1,5 @@
 #!/bin/bash
 #set $dpi         15px
-#set $gap         10px
-#set $double_dpi  30px 
-#set $border_size  5px
-
 dpi=$(cat ~/.config/i3/config | grep "set \$dpi " | awk '{print $3}')
 dpi_number=${dpi::-2}
 

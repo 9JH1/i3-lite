@@ -84,3 +84,5 @@ alias tree='tree -a -I .git'
 function ls {
 	lsd $@ --color=auto -r -t
 }
+
+eval "$(zoxide init zsh)"

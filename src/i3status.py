@@ -28,5 +28,5 @@ if __name__ == '__main__':
             line, prefix = line[1:], ','
 
         j = json.loads(line)
-        j.insert(0, {'full_text' : '%s' % get_line(), 'name' : 'gov'})
+        j.insert(0, {'full_text' : '%s' % get_line(), 'name' : 'gov',"markup": "pango"})
         print_line(prefix+json.dumps(j))

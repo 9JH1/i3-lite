@@ -3,10 +3,9 @@ source ~/.cache/wal/colors.sh
 color_good=$color5 
 color_bad=$foreground 
 color_degraded=$color6
-
+font="Mononoki Nerd Font"
 read -r -d '' tmp << EOM
 general {
-	separator = "  |  "
 	colors = true
   interval = 5
 	markup = "pango"
@@ -25,33 +24,29 @@ order += "memory"
 order += "tztime local"
 
 wireless _first_ {
-	format_up = "󰖩 %quality"
-  format_down = "W: down"
-}
-
-disk "/" {
-	format = "󰨣 %percentage_used/%used"
-}
+	format_up = "<span>󰖩 %quality</span>"
+  format_down = "<span>󰖪 </span>"
+} 
 
 battery all {
-  format = "<span foreground='$color_degraded'>󰁹 %percentage %remaining</span>"
+  format = "<span foreground='$color_degraded'>󰁹 %percentage</span>"
 	low_threshold = 30
 	threshold_type = percentage
 }
 
 load {
-  format = " %1min"
+  format = "<span> %1min</span>"
 	max_threshold = "2.0"
 }
 
 memory {
-  format = "  %percentage_used"
+  format = "<span>  %percentage_used</span>"
 	threshold_degraded = 75%
 	threshold_critical = 25%
 }
 
 tztime local {
-	format = "%A, %l:%M (%d/%m)"
+	format = "<span>%l:%M</span>"
 }
 
 volume master {
@@ -63,10 +58,10 @@ volume master {
 }
 
 cpu_usage {
-	format = " %usage"
+	format = "<span> %usage</span>"
 	max_threshold = 75
 	degraded_threshold = 50
-	format_above_threshold = " %usage"
+	format_above_threshold = "<span> %usage</span>"
 }
 EOM
 tmp2=$(mktemp --suffix=".conf")

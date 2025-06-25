@@ -21,7 +21,7 @@ mouse_right_click = close_current
 width = 400
 progress_bar = true
 progress_bar_min_width = 300
-offset = ($gap,$gap)
+offset = ($((gap_number*2)),$((gap_number*2)))
 origin = bottom-right
 [urgency_low]
 foreground = "${color3}"
