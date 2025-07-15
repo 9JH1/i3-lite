@@ -16,6 +16,6 @@ if [[ "$(playerctl metadata --format '-' 2>/dev/null)" == *-* ]]; then
 	fi
 
 else 
-	echo "󰝛"
+	echo "󰝛 "
 fi
 

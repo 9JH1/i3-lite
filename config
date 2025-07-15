@@ -16,6 +16,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 for_window [window_role="alert"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="isolated_terminal"] floating enable
+for_window [class="fullscreen"] fullscreen enable
 for_window [all] border pixel $border_size
 
 # -- BASE KEYBINDS --
@@ -49,16 +50,17 @@ bindsym $mod+Shift+Return exec --no-startup-id "/home/$USER/.config/i3/src/kitty
 bindsym $mod+x            exec --no-startup-id "/home/$USER/.config/i3/src/lock.sh"
 bindsym $mod+m            exec --no-startup-id "/home/$USER/.config/i3/src/lock.sh --image"
 bindsym $mod+Ctrl+x       exec --no-startup-id "shutdown now"
-bindsym $mod+Shift+t            exec --no-startup-id "/home/$USER/.config/i3/src/wal.sh"
+bindsym $mod+Shift+t      exec --no-startup-id "/home/$USER/.config/i3/src/wal.sh"
+bindsym $mod+Ctrl+Shift+q exec --no-startup-id alacritty --class fullscreen -e sh -c "sudo $HOME/.config/i3/src/spoof.sh"
 
 # -- SPECIAL KEYBINDS -- 
 bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
 bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
 bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute      exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86AudioPlay         exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext         exec --no-startup-id playerctl next
-bindsym XF86AudioPrev         exec --no-startup-id playerctl previous 
+bindsym XF86AudioPlay         exec --no-startup-id playerctl play-pause && $refresh_i3status 
+bindsym XF86AudioNext         exec --no-startup-id playerctl next && $refresh_i3status 
+bindsym XF86AudioPrev         exec --no-startup-id playerctl previous && $refresh_i3status 
 bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
@@ -67,9 +69,10 @@ exec_always --no-startup-id killall blueman-applet; blueman-applet
 exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
 exec_always --no-startup-id ~/.config/i3/src/wal.sh
 exec_always --no-startup-id xset r rate 200 35
-#exec_always --no-startup-id killall plank; plank
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-gaps inner $dpi_gap  
+gaps inner $dpi_gap
 gaps outer $dpi_gap
 hide_edge_borders none
 
@@ -117,25 +120,20 @@ client.unfocused        $background    $background  $background $background $bac
 client.urgent           #ff0000        #ff0000      #ff0000     #ff0000     #ff0000 
 client.focused          $color4        $color4       $color4   $color4      $color4  
 bar {
-    status_command exec ~/.config/i3/src/i3status.sh
-		bindsym button3 exec dunstctl set-paused toggle
-		bindsym button1 exec exec playerctl play-pause
-		i3bar_command i3bar --transparency
+    status_command exec ~/.config/i3/src/i3status_top.sh
+		bindsym button3 exec dunstctl set-paused toggle && $refresh_i3status 
+		bindsym button1 exec exec playerctl play-pause  && $refresh_i3status
+		i3bar_command exec i3bar --transparency --bar_id bar-0
 		position top
 		separator_symbol "|"
 		strip_workspace_numbers yes
 		strip_workspace_name no 
 		tray_padding $bar_icon_padding 
-		font pango: Mononoki Nerd Font Bold Italic $dpi
+		font pango: Mononoki Nerd Font Bold $dpi
 		workspace_min_width $dpi_alt
 		workspace_buttons yes 
 		binding_mode_indicator no
-    # mode hide
-    # hidden_state show
-    # modifier Mod1 
-		# ^ Mod1 is alt, if you put it as your normal mod key 
-		# in this case Mod4 it will be a pain when doing any 
-		# keybind as the bar will appear
+
 
 		padding $bar_padding 0px $bar_padding $dpi
 		colors {
@@ -145,4 +143,21 @@ bar {
 			focused_workspace $color5 $color5 $background
 			inactive_workspace $background $background $color5
 		}
-} 
+}
+
+bar {
+	position bottom
+	i3bar_command i3bar --transparency --bar_id bar-1
+	status_command exec ~/.config/i3/src/i3status_bottom.sh
+	padding 0px $dpi 0 $bar_icon_padding
+	workspace_buttons no
+	separator_symbol "|"
+	font pango: Mononoki Nerd Font Bold $dpi
+	tray_output none
+
+	colors {
+		background $background
+		statusline $color1
+		separator $color5
+	}
+}

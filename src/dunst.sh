@@ -38,9 +38,8 @@ foreground = "#ffffff"
 background = "#ff5050"
 frame_color = "#ff0000"
 EOM
-killall -q dunst
 dunst_config_file=$(mktemp)
 echo "$DUNSTRC" >  $dunst_config_file
 echo "starting dunst"
+killall dunst 
 dunst -config "$dunst_config_file" & 
-notify-send "Changed Wallpaper"

@@ -1,6 +1,8 @@
 #!/bin/bash
 #set $dpi         15px
 dpi=$(cat ~/.config/i3/config | grep "set \$dpi " | awk '{print $3}')
+dpi_alt=$(cat ~/.config/i3/config | grep "set \$bar_padding" | awk '{print $3}')
+dpi_alt_number=${dpi_alt::-2};
 dpi_number=${dpi::-2}
 
 dpi_half=$((dpi_number / 2 ))
