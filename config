@@ -1,6 +1,7 @@
 # -- VARS
 set $mod Mod4
-set $dpi          20px
+set $dpi          22px
+set $font_size    15px
 set $dpi_gap      10px
 set $dpi_alt      60px 
 set $border_size  5px
@@ -18,6 +19,7 @@ for_window [class="feh"] floating enable
 for_window [class="isolated_terminal"] floating enable
 for_window [class="fullscreen"] fullscreen enable
 for_window [all] border pixel $border_size
+default_border pixel $border_size
 
 # -- BASE KEYBINDS --
 bindsym $mod+shift+f fullscreen toggle global
@@ -64,6 +66,7 @@ bindsym XF86AudioPrev         exec --no-startup-id playerctl previous && $refres
 bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
+exec_always --no-startup-id killall snixembed; snixembed
 exec_always --no-startup-id killall nm-applet; nm-applet
 exec_always --no-startup-id killall blueman-applet; blueman-applet
 exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
@@ -71,6 +74,12 @@ exec_always --no-startup-id ~/.config/i3/src/wal.sh
 exec_always --no-startup-id xset r rate 200 35
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Adjust gaps (inner and outer)
+bindsym $mod+plus gaps inner current plus 1
+bindsym $mod+minus gaps inner current minus 1
+bindsym $mod+Shift+plus gaps outer current plus 1
+bindsym $mod+Shift+minus gaps outer current minus 1
 
 gaps inner $dpi_gap
 gaps outer $dpi_gap
@@ -108,17 +117,19 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-set_from_resource $background     i3wm.background
+set_from_resource $background     i3wm.color5
 set_from_resource $foreground     i3wm.foreground
-set_from_resource $color1         i3wm.color1
+set_from_resource $color1         i3wm.background
 set_from_resource $color4         i3wm.color4
-set_from_resource $color5         i3wm.color5
+set_from_resource $color5         i3wm.color2
+font pango:Victor Mono Nerd Font Bold Italic $font_size
 
-# -- CLIENT COLORS --    border         bg            fg        indicator    child_border
-client.focused_inactive $background    $background  $background $background $background
-client.unfocused        $background    $background  $background $background $background
-client.urgent           #ff0000        #ff0000      #ff0000     #ff0000     #ff0000 
-client.focused          $color4        $color4       $color4   $color4      $color4  
+# -- CLIENT COLORS --    border     bg       fg          indicator   child_border
+client.focused_inactive $background $color5  $foreground $background $background
+client.unfocused        $background $color5  $background $background $background
+client.urgent           #ff0000     #ff0000  #ff0000     #ff0000     #ff0000 
+client.focused          $color4     $color1  $background $color4     $color4  
+
 bar {
     status_command exec ~/.config/i3/src/i3status_top.sh
 		bindsym button3 exec dunstctl set-paused toggle && $refresh_i3status 

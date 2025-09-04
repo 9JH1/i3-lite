@@ -1,8 +1,8 @@
 #!/bin/bash
 source ~/.cache/wal/colors.sh
-color_good=$color5 
-color_bad=$foreground 
-color_degraded=$color6
+color_good=$background
+color_bad=$color3 
+color_degraded=$color2
 font="Mononoki Nerd Font"
 read -r -d '' tmp << EOM
 general {
@@ -17,10 +17,7 @@ general {
 
 order += "wireless _first_"
 order += "battery all"
-order += "volume master"
-order += "cpu_usage"
 order += "load"
-order += "memory"
 order += "tztime local"
 
 wireless _first_ {
@@ -39,29 +36,8 @@ load {
 	max_threshold = "2.0"
 }
 
-memory {
-  format = "<span>  %percentage_used</span>"
-	threshold_degraded = 75%
-	threshold_critical = 25%
-}
-
 tztime local {
 	format = "<span>%l:%M</span>"
-}
-
-volume master {
-	format = "<span foreground='$color_bad'>󰕾 %volume</span>"
-  format_muted = "<span foreground='$color_good'>󰖁 %volume</span>"
-  device = "default"
-  mixer = "Master"
-  mixer_idx = 0
-}
-
-cpu_usage {
-	format = "<span> %usage</span>"
-	max_threshold = 75
-	degraded_threshold = 50
-	format_above_threshold = "<span> %usage</span>"
 }
 EOM
 

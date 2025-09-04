@@ -47,5 +47,5 @@ if [ -v $1 ]; then
 	kitty --config="$KITTY_PATH" /bin/sh -c "export ZDOTDIR=/home/$USER/.config/i3/conf/ && export ZSH_ISOLATE=$isolate && zsh"
 
 else 
-	kitty --config="$KITTY_PATH" --class="isolated_terminal" /bin/sh -c "bash --rcfile $HOME/.config/i3/conf/bashrc"
+	kitty --config="$KITTY_PATH" --class="isolated_terminal" /bin/sh -c "export ZDOTDIR=/home/$USER/.config/i3/conf/ && export ZSH_ISOLATE=$isolate && zsh"
 fi

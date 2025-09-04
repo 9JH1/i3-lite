@@ -22,7 +22,7 @@ width = 400
 progress_bar = true
 progress_bar_min_width = 300
 offset = ($((gap_number*2)),$((gap_number*2)))
-origin = bottom-right
+origin = top-right
 [urgency_low]
 foreground = "${color3}"
 background = "${color0}"
