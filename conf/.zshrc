@@ -80,7 +80,7 @@ function cdr() {
 
 # Define aliases.
 alias tree='tree -a -I .git'
-
+alias cat='bat'
 function ls {
 	lsd $@ --color=auto -r -t
 }

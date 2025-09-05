@@ -43,7 +43,6 @@ EOM
 
 tmp2=$(mktemp --suffix=".conf")
 echo "$tmp" >> "$tmp2"
-(i3bar --bar_id bar-1 &>/dev/null &) # strap on secondary bar
 i3status -c "$tmp2" \
 	| python /home/$USER/.config/i3/src/i3status.py "/home/$USER/.config/i3/src/playerctl.sh" \
 	| python /home/$USER/.config/i3/src/i3status.py "/home/$USER/.config/i3/src/notify.sh"

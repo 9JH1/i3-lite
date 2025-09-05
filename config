@@ -1,11 +1,11 @@
 # -- VARS
 set $mod Mod4
-set $dpi          25px
-set $font_size    15px
+set $dpi          30px
+set $font_size    20px
 set $dpi_gap      0px
 set $dpi_alt      60px 
 set $border_size  5px
-set $bar_padding  2px
+set $bar_padding  5px
 set $bar_icon_padding 8px
 
 # -- BASE SETTINGS 
@@ -77,7 +77,7 @@ exec_always --no-startup-id killall snixembed; snixembed
 exec_always --no-startup-id killall nm-applet; nm-applet
 exec_always --no-startup-id killall blueman-applet; blueman-applet
 exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
-exec_always --no-startup-id ~/.config/i3/src/wal.sh
+exec_always --no-startup-id ~/.config/i3/src/wal.sh --preserve
 exec_always --no-startup-id xset r rate 200 35
 
 # Adjust gaps (inner and outer)
@@ -122,16 +122,16 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-set_from_resource $background     i3wm.color5
+set_from_resource $background     i3wm.background
 set_from_resource $foreground     i3wm.foreground
-set_from_resource $color1         i3wm.background
-set_from_resource $color4         i3wm.color4
-set_from_resource $color5         i3wm.color2
+set_from_resource $color1         i3wm.color1
+set_from_resource $color2         i3wm.color2
+set_from_resource $color5         i3wm.color5
 
 font pango:Victor Mono Nerd Font Bold Italic $font_size
 
 # -- CLIENT COLORS --    border     bg       fg          indicator   child_border
-client.focused_inactive $background $color5  $color1 $background $background
+client.focused_inactive $color5 $color5  $color1 $background $background
 client.unfocused        $background $color5  $background $background $background
 client.urgent           #ff0000     #ff0000  #ff0000     #ff0000     #ff0000 
 client.focused          $background $color5  $color1 $background $background
@@ -152,13 +152,13 @@ bar {
 		binding_mode_indicator no
 
 
-		padding $bar_padding 0px $bar_padding $dpi
+		padding $bar_padding $dpi $bar_padding $dpi 
 		colors {
-			background $background
-			statusline $color1
-			separator $color5
-			focused_workspace $color5 $color5 $background
-			inactive_workspace $background $background $color5
+			background $color5
+			statusline $background
+			separator $color2
+			focused_workspace $color1 $color1 $background
+			inactive_workspace $color5 $color5 $color2
 		}
 }
 
@@ -166,15 +166,15 @@ bar {
 	position bottom
 	i3bar_command i3bar --transparency --bar_id bar-1
 	status_command exec ~/.config/i3/src/i3status_bottom.sh
-	padding 0px $dpi 0 $bar_icon_padding
 	workspace_buttons no
+	padding $bar_padding $dpi $bar_padding $dpi 
 	separator_symbol "|"
 	font pango: Mononoki Nerd Font Bold $dpi
 	tray_output none
 
 	colors {
-		background $background
-		statusline $color1
-		separator $color5
+		background $color5
+		statusline $background
+		separator $color2
 	}
 }
