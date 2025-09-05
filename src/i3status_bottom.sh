@@ -16,7 +16,7 @@ general {
 }
 
 disk "/" {
-	format = "%used -> %free"
+	format = " %used -> %free"
 	prefix_type = binary
 }
 
@@ -50,5 +50,4 @@ EOM
 tmp2=$(mktemp --suffix=".conf")
 echo "$tmp" >> "$tmp2"
 i3status -c "$tmp2" \
-	| python "$HOME/.config/i3/src/i3status.py" "$HOME/.config/i3/src/mac.sh" \
-	| python "$HOME/.config/i3/src/i3status.py" "$HOME/.config/i3/src/polywins.sh"
+	| python "$HOME/.config/i3/src/i3status.py" "$HOME/.config/i3/src/mac.sh"

@@ -37,7 +37,7 @@ load {
 }
 
 tztime local {
-	format = "<span>%l:%M</span>"
+	format = "<span>%l:%M, %d/%m</span>"
 }
 EOM
 

@@ -40,6 +40,6 @@ frame_color = "#ff0000"
 EOM
 dunst_config_file=$(mktemp)
 echo "$DUNSTRC" >  $dunst_config_file
-echo "starting dunst"
 killall dunst 
 dunst -config "$dunst_config_file" & 
+dunstctl set-paused toggle

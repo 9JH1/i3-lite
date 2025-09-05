@@ -2,7 +2,7 @@
 set $mod Mod4
 set $dpi          22px
 set $font_size    15px
-set $dpi_gap      10px
+set $dpi_gap      0px
 set $dpi_alt      60px 
 set $border_size  5px
 set $bar_padding  2px
@@ -18,12 +18,16 @@ for_window [window_role="alert"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="isolated_terminal"] floating enable
 for_window [class="fullscreen"] fullscreen enable
-for_window [all] border pixel $border_size
-default_border pixel $border_size
+for_window [all] border normal $border_size
+for_window [all] title_window_icon on
+for_window [all] title_window_icon padding $bar_icon_padding
+for_window[all] title_format "%class -> <b>%title</b>"
 
 # -- BASE KEYBINDS --
 bindsym $mod+shift+f fullscreen toggle global
 bindsym $mod+Left focus left
+bindsym $mod+Tab focus left 
+bindsym $mod+Shift+Tab focus right
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
@@ -36,14 +40,17 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
-bindsym $mod+Shift+r restart
-
+bindsym $mod+Shift+Ctrl+r restart
 # -- LAYOUT KEYBINDS --
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+workspace_layout tabbed
+
 
 # -- EXEC KEYBINDS --
+bindsym $mod+Ctrl+w       exec --no-startup-id "/home/$USER/.config/i3/src/alttab.sh"  
+bindsym $mod+Shift+r      exec --no-startup-id "/home/$USER/.config/i3/src/rename_workspace.sh"
 bindsym $mod+r            exec --no-startup-id "/home/$USER/.config/i3/src/dmenu.sh"
 bindsym $mod+Shift+q      exec --no-startup-id "/home/$USER/.config/i3/src/forcequit.sh"
 bindsym $mod+Shift+s      exec --no-startup-id "/home/$USER/.config/i3/src/screenshot.sh"
@@ -72,8 +79,6 @@ exec_always --no-startup-id killall blueman-applet; blueman-applet
 exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
 exec_always --no-startup-id ~/.config/i3/src/wal.sh
 exec_always --no-startup-id xset r rate 200 35
-exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Adjust gaps (inner and outer)
 bindsym $mod+plus gaps inner current plus 1
@@ -122,13 +127,14 @@ set_from_resource $foreground     i3wm.foreground
 set_from_resource $color1         i3wm.background
 set_from_resource $color4         i3wm.color4
 set_from_resource $color5         i3wm.color2
+
 font pango:Victor Mono Nerd Font Bold Italic $font_size
 
 # -- CLIENT COLORS --    border     bg       fg          indicator   child_border
-client.focused_inactive $background $color5  $foreground $background $background
+client.focused_inactive $background $color5  $color1 $background $background
 client.unfocused        $background $color5  $background $background $background
 client.urgent           #ff0000     #ff0000  #ff0000     #ff0000     #ff0000 
-client.focused          $color4     $color1  $background $color4     $color4  
+client.focused          $background $color5  $color1 $background $background
 
 bar {
     status_command exec ~/.config/i3/src/i3status_top.sh
