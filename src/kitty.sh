@@ -4,11 +4,10 @@ if [ -v $1 ]; then
 	isolate=1;
 fi
 read -r -d '' KITTY_CONFIG << EOM
-include ~/.config/i3/conf/kitty-extra.conf
 font_family Mononoki Nerd Font Bold
 bold_font MonaspiceRN NFM Bold 
-italic_font Victor Mono Bold Italic 
-bold_italic_font Victor Mono Bold Italic
+italic_font VictorMono NFM Italic 
+bold_italic_font VictorMono NFM Bold Italic
 font_size 13
 disable_ligatures never 
 
@@ -44,7 +43,7 @@ if [ "$1" = "no-run" ]; then
 fi 
 
 if [ -v $1 ]; then 
-	kitty --config="$KITTY_PATH" /bin/sh -c "export ZDOTDIR=/home/$USER/.config/i3/conf/ && export ZSH_ISOLATE=$isolate && zsh"
+	kitty --config="$KITTY_PATH" --debug-font-fallback /bin/sh -c "export ZDOTDIR=/home/$USER/.config/i3/conf/ && export ZSH_ISOLATE=$isolate && zsh"
 
 else 
 	kitty --config="$KITTY_PATH" --class="isolated_terminal" /bin/sh -c "export ZDOTDIR=/home/$USER/.config/i3/conf/ && export ZSH_ISOLATE=$isolate && zsh"

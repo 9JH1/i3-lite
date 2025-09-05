@@ -5,7 +5,7 @@ if [[ "$(playerctl metadata --format '-' 2>/dev/null)" == *-* ]]; then
 	title=$(echo "$raw_title" | awk '{if(length > 25) printf "%.25s...\n", $0; else print}')
 	
 	echo -e " "
-	echo -e "<span font_family='Victor Mono' font_weight='ultrabold' font_style='italic'>"
+	echo -e "<span font_family='Victor Mono Nerd Font' font_weight='ultrabold' font_style='italic'>"
 	echo -e "$title "
 	echo -e "</span>"
 	

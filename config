@@ -1,6 +1,6 @@
 # -- VARS
 set $mod Mod4
-set $dpi          22px
+set $dpi          25px
 set $font_size    15px
 set $dpi_gap      0px
 set $dpi_alt      60px 
@@ -138,8 +138,8 @@ client.focused          $background $color5  $color1 $background $background
 
 bar {
     status_command exec ~/.config/i3/src/i3status_top.sh
-		bindsym button3 exec dunstctl set-paused toggle && $refresh_i3status 
-		bindsym button1 exec exec playerctl play-pause  && $refresh_i3status
+		bindsym button3 exec "dunstctl set-paused toggle && $refresh_i3status"
+		bindsym button1 exec "exec playerctl play-pause  && $refresh_i3status"
 		i3bar_command exec i3bar --transparency --bar_id bar-0
 		position top
 		separator_symbol "|"
