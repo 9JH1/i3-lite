@@ -18,11 +18,6 @@ if [ ! -d "$WALLPAPER_DIR" ];then
 	exit 
 fi 
 
-if ! command -v motionlayer &> /dev/null;then 
-	echo "Motionlayer Binary not found";
-	exit 
-fi 
-
 # parse arguments
 if [[ "$1" = "--custom" ]];then	 wall="$2";
 elif [[ "$1" = "--preserve" ]];then wall=$(cat "$TMP_FILE");
@@ -32,7 +27,14 @@ fi
 
 # handle file type
 echo "$wall" > "$TMP_FILE"
-if is_video "$wall"; then	
+if is_video "$wall"; then
+	if ! command -v motionlayer &> /dev/null;then 
+		echo "Motionlayer Binary not found, trying --preserve";
+		$SCRIPT_DIR/wal.sh --preserve
+		exit 
+	fi 
+
+
 	touch /tmp/.frame.jpg
 	motionlayer --path "$wall" --frame-out "/tmp/.frame.jpg" & 		
 	sleep 1
