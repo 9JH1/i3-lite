@@ -1,6 +1,6 @@
 # -- VARS
 set $mod Mod4
-set $dpi          30px
+set $dpi          20px
 set $font_size    20px
 set $dpi_gap      0px
 set $dpi_alt      60px 
