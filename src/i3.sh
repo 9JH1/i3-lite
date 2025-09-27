@@ -1,12 +1,12 @@
 #!/bin/bash
-
-dpi=25
+dpi=30
 gap=0
-border_size=10
+border_size=5
 workspace_width=50
 refresh_i3status="killall -SIGUSR1 i3status"
 primary_monitor=$(xrandr | grep "primary" | awk '{print $1}')
 i3bar_height=$(xprop -name "i3bar for output $primary_monitor" | grep "_NET_WM_STRUT_PARTIAL" | awk '{print $5}' | tr -d ',')
+
 
 if [[ "$1" = "--reload-config" ]];then 
 read -r -d '' I3_CONF << EOM
@@ -57,18 +57,18 @@ bindsym \$mod+e layout toggle split
 workspace_layout tabbed
 
 # -- EXEC KEYBINDS --
-bindsym \$mod+Shift+Ctrl+r exec --no-startup-id "/home/$USER/.config/i3.sh --reload-config"
-bindsym \$mod+Ctrl+w       exec --no-startup-id "/home/$USER/.config/i3/src/alttab.sh"  
-bindsym \$mod+Shift+r      exec --no-startup-id "/home/$USER/.config/i3/src/rename_workspace.sh"
-bindsym \$mod+r            exec --no-startup-id "/home/$USER/.config/i3/src/dmenu.sh"
-bindsym \$mod+Shift+q      exec --no-startup-id "/home/$USER/.config/i3/src/forcequit.sh"
-bindsym \$mod+Shift+s      exec --no-startup-id "/home/$USER/.config/i3/src/screenshot.sh"
-bindsym \$mod+Return       exec --no-startup-id "/home/$USER/.config/i3/src/alacritty.sh"
-bindsym \$mod+Shift+Return exec --no-startup-id "/home/$USER/.config/i3/src/alacritty.sh -isolate"
-bindsym \$mod+x            exec --no-startup-id "/home/$USER/.config/i3/src/lock.sh"
-bindsym \$mod+m            exec --no-startup-id "/home/$USER/.config/i3/src/lock.sh --image"
+bindsym \$mod+Shift+Ctrl+r exec --no-startup-id "$HOME/.config/i3.sh --reload-config"
+bindsym \$mod+Ctrl+w       exec --no-startup-id "$HOME/.config/i3/src/alttab.sh"  
+bindsym \$mod+Shift+r      exec --no-startup-id "$HOME/.config/i3/src/rename_workspace.sh"
+bindsym \$mod+r            exec --no-startup-id "$HOME/.config/i3/src/dmenu.sh"
+bindsym \$mod+Shift+q      exec --no-startup-id "$HOME/.config/i3/src/forcequit.sh"
+bindsym \$mod+Shift+s      exec --no-startup-id "$HOME/.config/i3/src/screenshot.sh"
+bindsym \$mod+Return       exec --no-startup-id "$HOME/.config/i3/src/alacritty.sh"
+bindsym \$mod+Shift+Return exec --no-startup-id "$HOME/.config/i3/src/alacritty.sh -isolate"
+bindsym \$mod+x            exec --no-startup-id "$HOME/.config/i3/src/lock.sh"
+bindsym \$mod+m            exec --no-startup-id "$HOME/.config/i3/src/lock.sh --image"
 bindsym \$mod+Ctrl+x       exec --no-startup-id "shutdown now"
-bindsym \$mod+Shift+t      exec --no-startup-id "/home/$USER/.config/i3/src/wal.sh"
+bindsym \$mod+Shift+t      exec --no-startup-id "$HOME/.config/i3/src/wal.sh"
 bindsym \$mod+Ctrl+Shift+q exec --no-startup-id alacritty --class fullscreen -e sh -c "sudo $HOME/.config/i3/src/spoof.sh"
 
 # -- SPECIAL KEYBINDS -- 
@@ -100,16 +100,16 @@ gaps outer \$gap
 hide_edge_borders none
 
 # -- WORKSPACES -- 
-set \$ws1 "1:󰲠 "
-set \$ws2 "2:󰲢 "
-set \$ws3 "3:󰲤 "
-set \$ws4 "4:󰲦 "
-set \$ws5 "5:󰲨 "
-set \$ws6 "6:󰲪 "
-set \$ws7 "7:󰲬 "
-set \$ws8 "8:󰲮 "
-set \$ws9 "9:󰲰 "
-set \$ws10 "10:󰿬 "
+set \$ws1 "1"
+set \$ws2 "2"
+set \$ws3 "3"
+set \$ws4 "4"
+set \$ws5 "5"
+set \$ws6 "6"
+set \$ws7 "7"
+set \$ws8 "8"
+set \$ws9 "9"
+set \$ws10 "10"
 bindsym \$mod+1 workspace number \$ws1
 bindsym \$mod+2 workspace number \$ws2
 bindsym \$mod+3 workspace number \$ws3
@@ -140,10 +140,10 @@ set_from_resource \$color5         i3wm.color5
 font pango:Victor Mono Nerd Font Bold Italic \$dpi
 
 # -- CLIENT COLORS --   border       bg        fg           indicator    child_border
-client.focused_inactive \$color5     \$color5  \$color1     \$background \$color5
+client.focused_inactive \$color5     \$color5  \$background \$background \$color5
 client.unfocused        \$color5     \$color5  \$background \$background \$color5
-client.urgent           #ff0000      #ff0000   #ff0000      #ff0000      #ff0000 
-client.focused          \$color5     \$color5  \$color1     \$background \$color5
+client.urgent           #ff0000      #ff0000   #0000ff      #ff0000      #ff0000 
+client.focused          \$color5     \$color5  \$background \$background \$color5
 
 bar {
     status_command exec ~/.config/i3/src/i3status_top.sh
@@ -151,23 +151,20 @@ bar {
 		bindsym button1 exec "exec playerctl play-pause  && $refresh_i3status"
 		i3bar_command exec i3bar --transparency --bar_id bar-0
 		position top
-		separator_symbol "|"
 		strip_workspace_numbers yes
 		strip_workspace_name no 
-		tray_padding \$gap 
 		font pango: Mononoki Nerd Font Bold \$dpi
 		workspace_min_width \$workspace_width
 		workspace_buttons yes 
 		binding_mode_indicator no
 
-
-		padding \$gap \$dpi \$gap \$dpi 
 		colors {
-			background \$color5
+			background \$background
 			statusline \$background
 			separator \$color2
-			focused_workspace \$color1 \$color1 \$background
-			inactive_workspace \$color5 \$color5 \$color2
+
+			focused_workspace \$color5 \$color5 \$background
+			inactive_workspace \$background \$background \$color5
 		}
 }
 
@@ -176,13 +173,11 @@ bar {
 	i3bar_command i3bar --transparency --bar_id bar-1
 	status_command exec ~/.config/i3/src/i3status_bottom.sh
 	workspace_buttons no
-	padding \$gap \$dpi \$gap \$dpi 
-	separator_symbol "|"
 	font pango: Mononoki Nerd Font Bold \$dpi
 	tray_output none
 
 	colors {
-		background \$color5
+		background \$background
 		statusline \$background
 		separator \$color2
 	}
@@ -191,4 +186,103 @@ EOM
 
 echo "$I3_CONF" > ~/.config/i3/config
 i3-msg reload
+else 
+# Function to convert hex to decimal
+hex_to_dec() {
+    local hex=$1
+    # Remove leading # if present
+    hex=${hex#\#}
+    # Convert to uppercase for consistency
+    hex=${hex^^}
+    # Validate hex input (must be 1-6 characters, 0-9 or A-F)
+    if [[ ! $hex =~ ^[0-9A-F]{1,6}$ ]]; then
+        echo "Error: Invalid hex value '$hex'" >&2
+        return 1
+    fi
+    echo $((16#$hex))
+}
+
+# Function to convert decimal to hex (ensuring 2 digits)
+dec_to_hex() {
+    local dec=$1
+    # Ensure input is a number
+    if [[ ! $dec =~ ^[0-9]+$ ]]; then
+        echo "Error: Invalid decimal value '$dec'" >&2
+        return 1
+    fi
+    printf "%02X" "$dec"
+}
+
+# Function to darken/lighten color based on index
+generate_color() {
+    local color=$1
+    local index=$2
+
+    # Validate index
+    if [[ ! $index =~ ^-?[0-9]+$ ]]; then
+        echo "Error: Invalid index '$index'" >&2
+        return 1
+    fi
+
+    # Remove # from hex color if present
+    color=${color#\#}
+
+    # Validate hex color (must be exactly 6 characters)
+    if [[ ! $color =~ ^[0-9A-Fa-f]{6}$ ]]; then
+        echo "Error: Invalid hex color '$color'" >&2
+        return 1
+    fi
+
+    # Extract R, G, B components
+    r_hex=${color:0:2}
+    g_hex=${color:2:2}
+    b_hex=${color:4:2}
+
+    # Convert to decimal
+    r=$(hex_to_dec "$r_hex") || return 1
+    g=$(hex_to_dec "$g_hex") || return 1
+    b=$(hex_to_dec "$b_hex") || return 1
+
+    # Adjust brightness based on index (e.g., index=-10 darkens, index=10 lightens)
+    # Each index point changes brightness by ~4 (255/64)
+    adjustment=$((index * 4))
+    r=$((r + adjustment))
+    g=$((g + adjustment))
+    b=$((b + adjustment))
+
+    # Clamp values to 0-255
+    r=$((r < 0 ? 0 : (r > 255 ? 255 : r)))
+    g=$((g < 0 ? 0 : (g > 255 ? 255 : g)))
+    b=$((b < 0 ? 0 : (b > 255 ? 255 : b)))
+
+    # Convert back to hex
+    r_hex=$(dec_to_hex "$r") || return 1
+    g_hex=$(dec_to_hex "$g") || return 1
+    b_hex=$(dec_to_hex "$b") || return 1
+
+    # Output new hex color
+    echo "#${r_hex}${g_hex}${b_hex}"
+}
+
+source ~/.cache/wal/colors.sh
+i=" "
+seed=$background
+color_good="#00ff00"
+color_bad="#ff0000"
+color_degraded="#ff5500"
+
+# top values 
+bcolor1=$(generate_color $seed 50)
+bcolor2=$(generate_color $seed 40)
+bcolor3=$(generate_color $seed 30)
+bcolor4=$(generate_color $seed 20)
+bcolor5=$(generate_color $seed 10)
+bcolor6=$(generate_color $seed 5)
+
+# bottom values 
+bcolor7=$(generate_color $seed 40)
+bcolor8=$(generate_color $seed 30)
+bcolor9=$(generate_color $seed 20)
+bcolor10=$(generate_color $seed 10)
+bcolor11=$(generate_color $seed 5)
 fi

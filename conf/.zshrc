@@ -52,6 +52,7 @@ z4h init
 
 # custom cd functions for better navigation
 export localcd=""
+
 function cd(){
 	builtin cd "$@"
 	echo "$(pwd)" > ~/.pwd.tmp
@@ -73,6 +74,7 @@ cds
 function linecount(){
 	ls -R | wc -l
 }
+
 function cdr() {
 	dirs=(*/)
 	[[ $dirs ]] && cd -- "${dirs[RANDOM%${#dirs[@]}]}"

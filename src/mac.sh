@@ -1,4 +1,7 @@
 #!/bin/bash
-echo -e "󰒍 <span font_family='Victor Mono Nerd Font' font_weight='ultrabold' font_style='italic'>"
-ip link | grep "link/ether" | tail -n 1 | awk '{print $2}'
-echo -e "</span>"
+source ~/.config/i3/src/i3.sh 
+out="<span foreground='$bcolor11'>$i</span>"
+out+="<span bgcolor='$bcolor11'>󰒍 "
+out+=$(ip link | grep "link/ether" | tail -n 1 | awk '{print $2}')
+out+="</span>"
+echo "$out"
