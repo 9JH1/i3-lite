@@ -57,7 +57,7 @@ fi
 
 if [[ "$1" == "-isolate" ]]; then 
 	echo "Running isolated Term"
-	alacritty --config-file "$ALACRITTY_PATH" --class "iso_term"
+	alacritty --config-file "$ALACRITTY_PATH" --class "iso"
 else 
 	alacritty --config-file "$ALACRITTY_PATH"
 fi

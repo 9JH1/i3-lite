@@ -1,14 +1,14 @@
 #!/bin/bash
-#set $dpi         15px
-dpi=25
-font_size=$dpi 
-gap=5
-border_size=$gap
-workspace_width=50
 
+dpi=25
+gap=0
+border_size=10
+workspace_width=50
 refresh_i3status="killall -SIGUSR1 i3status"
 primary_monitor=$(xrandr | grep "primary" | awk '{print $1}')
-i3bar_size=$(xprop -name "i3bar for output $primary_monitor" | grep "_NET_WM_STRUT_PARTIAL" | awk '{print $5}' | tr -d ',')
+i3bar_height=$(xprop -name "i3bar for output $primary_monitor" | grep "_NET_WM_STRUT_PARTIAL" | awk '{print $5}' | tr -d ',')
+
+if [[ "$1" = "--reload-config" ]];then 
 read -r -d '' I3_CONF << EOM
 # -- VARS
 set \$dpi             $(echo $dpi'px')
@@ -25,11 +25,11 @@ default_orientation auto
 # -- FOR WINDOW --
 for_window [window_role="alert"] floating enable
 for_window [class="feh"] floating enable
-for_window [class="isolated_terminal"] floating enable
+for_window [class="iso"] floating enable
 for_window [class="fullscreen"] fullscreen enable
 for_window [all] border normal \$border_size
 for_window [all] title_window_icon on
-for_window [all] title_window_icon padding \$bar_icon_padding
+for_window [all] title_window_icon padding \$border_size
 for_window[all] title_format "%class -> <b>%title</b>"
 
 # -- BASE KEYBINDS --
@@ -49,7 +49,6 @@ bindsym \$mod+Shift+Right move right
 bindsym \$mod+f fullscreen toggle
 bindsym \$mod+Shift+space floating toggle
 bindsym \$mod+space focus mode_toggle
-bindsym \$mod+Shift+Ctrl+r restart
 
 # -- LAYOUT KEYBINDS --
 bindsym \$mod+s layout stacking
@@ -58,6 +57,7 @@ bindsym \$mod+e layout toggle split
 workspace_layout tabbed
 
 # -- EXEC KEYBINDS --
+bindsym \$mod+Shift+Ctrl+r exec --no-startup-id "/home/$USER/.config/i3.sh --reload-config"
 bindsym \$mod+Ctrl+w       exec --no-startup-id "/home/$USER/.config/i3/src/alttab.sh"  
 bindsym \$mod+Shift+r      exec --no-startup-id "/home/$USER/.config/i3/src/rename_workspace.sh"
 bindsym \$mod+r            exec --no-startup-id "/home/$USER/.config/i3/src/dmenu.sh"
@@ -137,13 +137,13 @@ set_from_resource \$color1         i3wm.color1
 set_from_resource \$color2         i3wm.color2
 set_from_resource \$color5         i3wm.color5
 
-font pango:Victor Mono Nerd Font Bold Italic \$font_size
+font pango:Victor Mono Nerd Font Bold Italic \$dpi
 
 # -- CLIENT COLORS --   border       bg        fg           indicator    child_border
-client.focused_inactive \$color5     \$color5  \$color1     \$background \$background
-client.unfocused        \$background \$color5  \$background \$background \$background
+client.focused_inactive \$color5     \$color5  \$color1     \$background \$color5
+client.unfocused        \$color5     \$color5  \$background \$background \$color5
 client.urgent           #ff0000      #ff0000   #ff0000      #ff0000      #ff0000 
-client.focused          \$background \$color5  \$color1     \$background \$background
+client.focused          \$color5     \$color5  \$color1     \$background \$color5
 
 bar {
     status_command exec ~/.config/i3/src/i3status_top.sh
@@ -190,3 +190,5 @@ bar {
 EOM
 
 echo "$I3_CONF" > ~/.config/i3/config
+i3-msg reload
+fi

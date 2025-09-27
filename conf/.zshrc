@@ -8,7 +8,7 @@
 	zstyle ':z4h:fzf-complete' recurse-dirs 'no'
 	zstyle ':z4h:direnv'         enable 'no'
 	zstyle ':z4h:direnv:success' notify 'yes'
-	if [ "$ZSH_ISOLATE" -eq  "0" ]; then
+	if [ "$ZSH_ISOLATE" -eq  "1" ]; then
 		zstyle ':z4h:' start-tmux command ""
 	else
 		zstyle ':z4h:' start-tmux command tmux -u -f ~/.config/i3/conf/tmux.conf new-session -A
