@@ -3,7 +3,7 @@ source ~/.config/i3/src/i3.sh
 source "$HOME/.cache/wal/colors.sh"
 read -r -d '' DUNSTRC << EOM
 [global]
-font = MonaspiceRN NFM $dpi
+font = MonaspiceRN NFM $font_size
 markup = full
 format = "<b>%s</b>\n<b>%b</b>"
 icon_position = left
@@ -21,8 +21,8 @@ mouse_right_click = close_current
 width = 400
 progress_bar = true
 progress_bar_min_width = 300
-offset = ($((gap_number*2)),$((gap_number*2)))
-origin = top-right
+offset = (0,$i3bar_height)
+origin = bottom-right
 [urgency_low]
 foreground = "${color3}"
 background = "${color0}"
@@ -42,4 +42,5 @@ dunst_config_file=$(mktemp)
 echo "$DUNSTRC" >  $dunst_config_file
 killall dunst 
 dunst -config "$dunst_config_file" & 
-dunstctl set-paused toggle
+#dunstctl set-paused true
+notify-send "test" 

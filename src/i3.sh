@@ -8,7 +8,6 @@ primary_monitor=$(xrandr | grep "primary" | awk '{print $1}')
 i3bar_height=$(xprop -name "i3bar for output $primary_monitor" | grep "_NET_WM_STRUT_PARTIAL" | awk '{print $5}' | tr -d ',')
 font_size=$((dpi-10)) 
 font_size_px=$(echo $font_size'px')
-
 if [[ "$1" = "--reload-config" ]];then 
 read -r -d '' I3_CONF << EOM
 # -- VARS
@@ -57,7 +56,7 @@ bindsym \$mod+e layout toggle split
 workspace_layout tabbed
 
 # -- EXEC KEYBINDS --
-bindsym \$mod+Shift+Ctrl+r exec --no-startup-id "$HOME/.config/i3.sh --reload-config"
+bindsym \$mod+Shift+Ctrl+r exec --no-startup-id "$HOME/.config/i3/src/i3.sh --reload-config"
 bindsym \$mod+Ctrl+w       exec --no-startup-id "$HOME/.config/i3/src/alttab.sh"  
 bindsym \$mod+Shift+r      exec --no-startup-id "$HOME/.config/i3/src/rename_workspace.sh"
 bindsym \$mod+r            exec --no-startup-id "$HOME/.config/i3/src/dmenu.sh"

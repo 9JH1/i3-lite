@@ -44,7 +44,7 @@ bindsym $mod+e layout toggle split
 workspace_layout tabbed
 
 # -- EXEC KEYBINDS --
-bindsym $mod+Shift+Ctrl+r exec --no-startup-id "/home/_3hy/.config/i3.sh --reload-config"
+bindsym $mod+Shift+Ctrl+r exec --no-startup-id "/home/_3hy/.config/i3/src/i3.sh --reload-config"
 bindsym $mod+Ctrl+w       exec --no-startup-id "/home/_3hy/.config/i3/src/alttab.sh"  
 bindsym $mod+Shift+r      exec --no-startup-id "/home/_3hy/.config/i3/src/rename_workspace.sh"
 bindsym $mod+r            exec --no-startup-id "/home/_3hy/.config/i3/src/dmenu.sh"
