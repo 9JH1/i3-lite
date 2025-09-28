@@ -1,18 +1,18 @@
 #!/bin/bash
-dpi=30
+dpi=40
 gap=0
 border_size=5
 workspace_width=50
 refresh_i3status="killall -SIGUSR1 i3status"
 primary_monitor=$(xrandr | grep "primary" | awk '{print $1}')
 i3bar_height=$(xprop -name "i3bar for output $primary_monitor" | grep "_NET_WM_STRUT_PARTIAL" | awk '{print $5}' | tr -d ',')
-
+font_size=$((dpi-10)) 
+font_size_px=$(echo $font_size'px')
 
 if [[ "$1" = "--reload-config" ]];then 
 read -r -d '' I3_CONF << EOM
 # -- VARS
 set \$dpi             $(echo $dpi'px')
-set \$font_size       $(echo $font_size'px')
 set \$gap             $(echo $gap'px')
 set \$border_size     $(echo $border_size'px')
 set \$workspace_width $(echo $workspace_width'px')
@@ -85,7 +85,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 exec_always --no-startup-id killall snixembed; snixembed
 exec_always --no-startup-id killall nm-applet; nm-applet
 exec_always --no-startup-id killall blueman-applet; blueman-applet
-exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
+exec_always --no-startup-id killall unclutter; unclutter --timeout 0.1
 exec_always --no-startup-id ~/.config/i3/src/wal.sh --preserve
 exec_always --no-startup-id xset r rate 200 35
 
@@ -137,7 +137,7 @@ set_from_resource \$color1         i3wm.color1
 set_from_resource \$color2         i3wm.color2
 set_from_resource \$color5         i3wm.color5
 
-font pango:Victor Mono Nerd Font Bold Italic \$dpi
+font pango:Victor Mono Nerd Font Bold Italic $font_size_px
 
 # -- CLIENT COLORS --   border       bg        fg           indicator    child_border
 client.focused_inactive \$color5     \$color5  \$background \$background \$color5
@@ -278,6 +278,7 @@ bcolor3=$(generate_color $seed 30)
 bcolor4=$(generate_color $seed 20)
 bcolor5=$(generate_color $seed 10)
 bcolor6=$(generate_color $seed 5)
+
 
 # bottom values 
 bcolor7=$(generate_color $seed 40)

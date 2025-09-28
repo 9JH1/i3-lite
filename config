@@ -1,6 +1,5 @@
 # -- VARS
-set $dpi             30px
-set $font_size       px
+set $dpi             40px
 set $gap             0px
 set $border_size     5px
 set $workspace_width 50px
@@ -73,7 +72,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 exec_always --no-startup-id killall snixembed; snixembed
 exec_always --no-startup-id killall nm-applet; nm-applet
 exec_always --no-startup-id killall blueman-applet; blueman-applet
-exec_always --no-startup-id killall unclutter; unclutter --timeout 0.01
+exec_always --no-startup-id killall unclutter; unclutter --timeout 0.1
 exec_always --no-startup-id ~/.config/i3/src/wal.sh --preserve
 exec_always --no-startup-id xset r rate 200 35
 
@@ -125,7 +124,7 @@ set_from_resource $color1         i3wm.color1
 set_from_resource $color2         i3wm.color2
 set_from_resource $color5         i3wm.color5
 
-font pango:Victor Mono Nerd Font Bold Italic $dpi
+font pango:Victor Mono Nerd Font Bold Italic 30px
 
 # -- CLIENT COLORS --   border       bg        fg           indicator    child_border
 client.focused_inactive $color5     $color5  $background $background $color5
